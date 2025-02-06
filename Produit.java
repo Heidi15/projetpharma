@@ -1,36 +1,45 @@
 import java.util.*;
-class Produit implements Stockable, Serializable {
-    private int id;
-    private String nom;
-    private double prix;
-    private int quantiteStock;
-    private String categorie;
+import java.io.Serializable;
 
-    public Produit(int id, String nom, double prix, int quantiteStock, String categorie) {
-        this.id = id;
+public class Produit implements Stockable, Serializable {
+    private String nom;
+    private String categorie;
+    private double prix;
+    private int quantite;
+
+    public Produit(String nom, String categorie, double prix, int quantite) {
         this.nom = nom;
-        this.prix = prix;
-        this.quantiteStock = quantiteStock;
         this.categorie = categorie;
+        this.prix = prix;
+        this.quantite = quantite;
     }
 
+    // Implémentation de la méthode d'ajout
+    @Override
+    public void ajouterProduit(String nom, String categorie, double prix, int quantite) {
+        if (prix > 0 && quantite > 0) {
+            // ajouter le produit à l'inventaire
+            // ajouter à une liste de produits
+            System.out.println("Produit ajouté : " + nom);
+        } else {
+            System.out.println("Erreur : Le prix et la quantité doivent être supérieurs à zéro.");
+        }
+    }
+
+    // Getters et setters
     public String getNom() {
         return nom;
     }
 
-    @Override
-    public int getQuantiteStock() {
-        return quantiteStock;
+    public String getCategorie() {
+        return categorie;
     }
 
-    // Implémentation de la méthode 'serializable()' de l'interface Serializable
-    @Override
-    public String serializable() {
-        return "Produit{id=" + id + ", nom='" + nom + "', prix=" + prix + ", quantiteStock=" + quantiteStock + ", categorie='" + categorie + "'}";
+    public double getPrix() {
+        return prix;
     }
 
-    @Override
-    public String toString() {
-        return "Nom: " + nom + ", Prix: " + prix + "€, Quantité: " + quantiteStock + ", Catégorie: " + categorie;
+    public int getQuantite() {
+        return quantite;
     }
 }

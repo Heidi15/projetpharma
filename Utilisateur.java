@@ -1,11 +1,9 @@
-abstract class Utilisateur {
-    protected String nom;
-    protected String role;
+import java.util.*;
+import java.io.Serializable;
 
-    public Utilisateur(String nom, String role) {
-        this.nom = nom;
-        this.role = role;
-    }
+public abstract class Utilisateur {
+    private String username;
+    private String motDePasse;
 
-    public abstract void afficherInfo();
+    public abstract void afficherPermissions();
 }

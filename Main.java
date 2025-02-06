@@ -1,34 +1,27 @@
 import java.util.*;
+import java.io.Serializable;
+
 public class Main {
     public static void main(String[] args) {
-        // Création des utilisateurs (pharmacien)
-        Pharmacien pharmacien = new Pharmacien("Dr. Dupont");
+        Scanner scanner = new Scanner(System.in);//creation d'un scanner pour lire les entées utilisateurs
+        Inventaire inventaire = new Inventaire();// Création d'un inventaire pour stocker les produits
 
-        // Création des catégories et produits
-        Categorie medicaments = new Categorie("Médicaments");
-        medicaments.ajouterProduit(new Produit(1, "Amoxicilline", 5.99, 120, "Médicaments"));
-        medicaments.ajouterProduit(new Produit(2, "Azithromycine", 7.49, 50, "Médicaments"));
-        medicaments.ajouterProduit(new Produit(3, "Ciprofloxacine", 8.29, 75, "Médicaments"));
+        System.out.print("Entrez le nom du produit : ");//demander le nom du produit
+        String nom = scanner.nextLine();
 
-        Categorie cosmétiques = new Categorie("Cosmétiques");
-        cosmétiques.ajouterProduit(new Produit(7, "Crème hydratante", 14.99, 80, "Cosmétiques"));
-        cosmétiques.ajouterProduit(new Produit(8, "Gel nettoyant visage", 9.49, 150, "Cosmétiques"));
+        System.out.print("Entrez la catégorie du produit : ");//demander la catégorie du produit
+        String categorie = scanner.nextLine();
 
-        Categorie parapharmacie = new Categorie("Parapharmacie");
-        parapharmacie.ajouterProduit(new Produit(10, "Brosse à dents électrique", 39.99, 15, "Parapharmacie"));
-        parapharmacie.ajouterProduit(new Produit(11, "Dentifrice blancheur", 3.99, 250, "Parapharmacie"));
+        System.out.print("Entrez le prix du produit : ");//demander le prix
+        double prix = scanner.nextDouble();
 
-        // Liste de tous les produits
-        List<Produit> tousLesProduits = new ArrayList<>();
-        tousLesProduits.addAll(medicaments.getProduits());
-        tousLesProduits.addAll(cosmétiques.getProduits());
-        tousLesProduits.addAll(parapharmacie.getProduits());
+        System.out.print("Entrez la quantité du produit : ");//demander la quantité
+        int quantite = scanner.nextInt();
 
-        // Pharmacien consulte les produits
-        pharmacien.consulterProduits(tousLesProduits);
-
-        // Création d'une commande
-        Commande commande = new Commande(1, pharmacien);
-        commande.afficherDetailsCommande();
+        //creation d'un objet produit
+        Produit produit = new Produit(nom, categorie, prix, quantite);
+        //Ajout du produit dans l'inventaire
+        produit.ajouterProduit(nom, categorie, prix, quantite);
+        inventaire.ajouterProduit(produit);
     }
 }
